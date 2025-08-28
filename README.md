@@ -17,6 +17,10 @@ Check [DOCUMENTATION_MAP.md](./DOCUMENTATION_MAP.md) for a complete list of all 
 
 Last reorganization: 2025-08-27
 
+## Documentation Management
+For complete details on how this documentation is managed, synced, and maintained, see:
+- [**Documentation Management Guide**](./DOCUMENTATION_MANAGEMENT_GUIDE.md)
+
 ## Documentation Structure
 ```
 /mnt/docker/documentation/
