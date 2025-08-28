@@ -1,0 +1,29 @@
+# Archive folder - contains old/outdated docs
+archive/
+
+# Backup files
+*.backup
+*.bak
+*~
+*.swp
+*.tmp
+
+# OS files
+.DS_Store
+._*
+Thumbs.db
+
+# Log files
+*.log
+migration_log.txt
+consolidation_log.txt
+cleanup_validation_log.txt
+cleanup_log.txt
+
+# Google Drive review staging
+google_drive_review/
+
+# Large binary files
+*.tar.gz
+*.zip
+gdrive.tar.gz
