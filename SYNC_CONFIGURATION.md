@@ -32,13 +32,12 @@ Script: /mnt/docker/scripts/sync_documentation.sh
 
 ### 🐙 GitHub Integration
 
-**Status:** ❌ NOT CONNECTED  
-**Current State:** Documentation folder is NOT a git repository
+**Status:** ✅ CONNECTED  
+**Repository:** https://github.com/ealwais/docker-infrastructure-docs  
+**Branch:** main  
+**Sync:** Automatic with Google Drive sync (Daily 2AM)  
 
-The `/mnt/docker/documentation/` folder is currently **not** connected to GitHub. 
-
-**Other Git Repos Found:**
-- `/mnt/docker/homeassistant/homeassistant-mcp/` - MCP server code (separate project)
+The `/mnt/docker/documentation/` folder is now a git repository connected to GitHub.
 
 ## Data Flow
 
@@ -47,7 +46,7 @@ The `/mnt/docker/documentation/` folder is currently **not** connected to GitHub
          |
          ├──[Daily 2AM]──> Google Drive: Docker/Documentation/
          |
-         └──[NOT SYNCED]──> GitHub (no repo configured)
+         └──[Daily 2AM]──> GitHub: ealwais/docker-infrastructure-docs
 ```
 
 ## How to Set Up GitHub Sync (If Desired)
