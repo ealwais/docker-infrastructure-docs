@@ -1,42 +1,50 @@
 # Docker Streaming Stack Setup Guide
 
 ## Overview
-This streaming stack includes:
+This streaming stack has been consolidated into a single docker-compose.yml file that includes:
 - **NGINX Proxy Manager (NPM)** - SSL termination and domain management
 - **Xteve** - IPTV buffering and streaming (MSNBC Channel 215)
 - **Plex Media Server** - Local HDHomeRun content with host networking
+- **AdGuard Home** - DNS and ad blocking
+- **Portainer** - Docker management interface
+- **Portainer Agent** - Container management agent
+- **Watchtower** - Automatic container updates
 
 ## Directory Structure
 
 ```
 /mnt/docker/streaming-stack/
-├── docker-compose.yml          # Main compose file
+├── docker-compose.yml          # Consolidated compose file (all services)
 ├── .env                        # Environment variables
 ├── README.md                   # This file
 ├── NPM_PROXY_CONFIGURATION.md # NPM setup instructions
 │
-├── npm/                        # NPM data
-│   ├── data/                   # Database and config
-│   ├── letsencrypt/           # SSL certificates
-│   └── custom/                # Custom configurations
-│
+/mnt/docker/                    # Service data directories
+├── adguard/                    # AdGuard Home
+│   ├── work/                   # Working directory
+│   └── conf/                   # Configuration
+├── adguard-npm/               # Nginx Proxy Manager
+│   └── nginx-proxy-manager/
+│       ├── data/              # Database and config
+│       └── letsencrypt/       # SSL certificates
 ├── xteve/                      # Xteve data
-│   ├── config/
-│   │   └── settings.json      # Xteve configuration
+│   ├── config/                # Xteve configuration
 │   ├── data/                  # M3U and XML files
-│   ├── playlists/
-│   │   └── msnbc.m3u         # MSNBC playlist
-│   ├── buffer/                # Temporary buffer files
-│   └── cache/                 # Image cache
+│   └── playlists/             # IPTV playlists
+├── portainer/                  # Portainer
+│   └── data/                  # Portainer data
 │
-├── plex/                       # Plex data
-│   ├── config/                # Plex configuration
-│   └── transcode/             # Transcoding temp files
-│
-└── media/                      # Media files
-    ├── tv/                    # TV shows
-    ├── movies/                # Movies
-    └── music/                 # Music
+/opt/plex/                      # Plex configuration
+└── config/                     # Plex configuration files
+
+/mnt/                          # Media and temporary files
+├── ramdisk/                   # RAM disk for performance
+│   ├── xteve-buffer/          # Xteve buffer
+│   ├── plex-transcode/        # Plex transcode temp
+│   └── plex-buffer/           # Plex buffer
+├── television.shows/          # TV shows
+├── movies/                    # Movies
+└── Transcoding/               # Persistent transcoding
 ```
 
 ## Initial Setup
@@ -87,6 +95,9 @@ docker-compose logs -f
 - **NPM Admin Panel:** http://your-server-ip:81
 - **Xteve Management:** http://your-server-ip:34400
 - **Plex:** http://your-server-ip:32400
+- **AdGuard Home:** http://your-server-ip:3000
+- **Portainer:** http://your-server-ip:9443 (HTTPS)
+- **Portainer Agent:** http://your-server-ip:9001
 
 ### After NPM Configuration
 - **Xteve Management:** https://xteve.alwais.org (via NPM proxy)
@@ -164,6 +175,10 @@ docker-compose up -d
 # Update specific service
 docker-compose pull xteve
 docker-compose up -d xteve
+
+# Note: Watchtower automatically updates containers daily
+# To disable auto-updates for a specific container, add label:
+# com.centurylinklabs.watchtower.enable=false
 ```
 
 ### Backup
@@ -190,6 +205,14 @@ docker-compose logs -f plex
 ```
 
 ## Troubleshooting
+
+### AdGuard Port 68 Conflict
+If AdGuard fails to start with "bind: address already in use" error on port 68:
+```bash
+# Port 68 is used by system DHCP client (dhcpcd)
+# Solution: Remove port 68 mapping from docker-compose.yml
+# The DHCP server feature in AdGuard won't be available, but DNS/ad-blocking will work
+```
 
 ### Xteve Not Accessible
 ```bash
