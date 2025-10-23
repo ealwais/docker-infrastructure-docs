@@ -52,7 +52,7 @@ Think of it like this:
 - **Extensions** = Built-in superpowers
 - **Tools** = Individual actions you can take
 
-### The 28 Connectors
+### The 25 Connectors
 
 #### Home & Network (4)
 1. **Home Assistant** - Control 100+ smart devices
@@ -144,7 +144,7 @@ tail -f ~/Library/Logs/Claude/mcp.log
 tail -f ~/Library/Logs/Claude/mcp-server-hass-mcp.log
 ```
 
-### The 19 MCP Servers
+### The 16 MCP Servers
 
 #### Server List
 1. **hass-mcp** - Home Assistant
@@ -154,18 +154,15 @@ tail -f ~/Library/Logs/Claude/mcp-server-hass-mcp.log
 5. **gdrive-alwais** - Google Drive
 6. **gmail-mcp** - Gmail
 7. **google-calendar-mcp** - Calendar
-8. **imessage** - Messages
-9. **chrome-devtools** - Chrome tools
-10. **puppeteer** - Web automation
-11. **desktop-commander** - Mac control
-12. **filesystem** - File operations
-13. **sequential-thinking** - AI reasoning
-14. **memory** - Long-term memory
-15. **context7** - Documentation
-16. **time** - Time utilities
-17. **cloudflare-dns** - DNS analytics
-18. **paypal** - Invoicing
-19. **monarch-money** - Finance (disabled)
+8. **chrome-devtools** - Chrome tools
+9. **puppeteer** - Web automation
+10. **desktop-commander** - Mac control
+11. **filesystem** - File operations
+12. **sequential-thinking** - AI reasoning
+13. **memory** - Long-term memory
+14. **time** - Time utilities
+15. **cloudflare-dns** - DNS analytics
+16. **monarch-money** - Finance (disabled)
 
 ---
 

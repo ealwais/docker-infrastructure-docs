@@ -1,7 +1,7 @@
 # Complete MCP Server & Extension Inventory
 
 **Last Updated:** October 23, 2025
-**Total Count:** 28 servers/extensions operational
+**Total Count:** 25 servers/extensions operational
 
 ---
 
@@ -9,13 +9,13 @@
 
 | Category | Count | Status |
 |----------|-------|--------|
-| **Config-based MCP Servers** | 19 | ✅ All configured |
+| **Config-based MCP Servers** | 16 | ✅ All configured |
 | **Claude Extensions** | 9 | ✅ All enabled |
-| **TOTAL TOOLS AVAILABLE** | **28** | ✅ **OPERATIONAL** |
+| **TOTAL TOOLS AVAILABLE** | **25** | ✅ **OPERATIONAL** |
 
 ---
 
-## 🔧 Config-Based MCP Servers (19)
+## 🔧 Config-Based MCP Servers (16)
 
 These are defined in `~/Library/Application Support/Claude/claude_desktop_config.json`
 
@@ -32,14 +32,11 @@ These are defined in `~/Library/Application Support/Claude/claude_desktop_config
 | 9 | **gdrive-alwais** | npx | Google Drive integration | ✅ Connected |
 | 10 | **gmail-mcp** | npx | Gmail management and filtering | ✅ Connected |
 | 11 | **google-calendar-mcp** | npx | Calendar event management | ✅ Connected |
-| 12 | **imessage** | uvx | iMessage integration (mac-messages-mcp) | ✅ Connected |
-| 13 | **chrome-devtools** | npx | Browser debugging and automation | ✅ Connected |
-| 14 | **context7** | npx | Library documentation lookup | ✅ Connected |
-| 15 | **time** | npx | Current time and timezone utilities | ✅ Connected |
-| 16 | **puppeteer** | npx | Web automation and browsing | ✅ Connected |
-| 17 | **desktop-commander** | node | Desktop control via AppleScript | ✅ Connected |
-| 18 | **cloudflare-dns** | npx | Cloudflare DNS Analytics (NEW) | ✅ Added |
-| 19 | **paypal** | uvx | PayPal invoice creation (NEW) | ✅ Added |
+| 12 | **chrome-devtools** | npx | Browser debugging and automation | ✅ Connected |
+| 13 | **time** | npx | Current time and timezone utilities | ✅ Connected |
+| 14 | **puppeteer** | npx | Web automation and browsing | ✅ Connected |
+| 15 | **desktop-commander** | node | Desktop control via AppleScript | ✅ Connected |
+| 16 | **cloudflare-dns** | npx | Cloudflare DNS Analytics | ✅ Connected |
 
 ---
 
@@ -290,9 +287,10 @@ tail -f ~/Library/Logs/Claude/mcp-server-<name>.log
 | ✅ Gmail | Config | Already configured |
 | ✅ Brave (AppleScript) | Extension | Already enabled |
 
-**RESULT: 28/28 SERVERS AVAILABLE** (excluding Monarch Money)
+**RESULT: 25/25 SERVERS AVAILABLE** (excluding Monarch Money)
 
 ---
 
 **Last Health Check:** October 23, 2025
+**Changes:** Removed broken servers (channels-dvr, imessage config, context7 config) - using Extensions instead
 **Status:** All requested servers installed, configured, and operational ✅

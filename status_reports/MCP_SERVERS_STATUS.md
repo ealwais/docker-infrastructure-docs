@@ -1,7 +1,7 @@
 # MCP Servers Status & Configuration
 
 **Last Updated:** October 23, 2025
-**Status:** ✅ All 28 servers/extensions operational
+**Status:** ✅ All 25 servers/extensions operational
 
 > **📋 For complete inventory:** See [MCP_COMPLETE_INVENTORY.md](./MCP_COMPLETE_INVENTORY.md)
 
@@ -11,9 +11,9 @@
 
 | Category | Count | Status |
 |----------|-------|--------|
-| Config-based MCP Servers | 19 | ✅ All configured |
+| Config-based MCP Servers | 16 | ✅ All configured |
 | Claude Extensions | 9 | ✅ All enabled |
-| **TOTAL** | **28** | ✅ **OPERATIONAL** |
+| **TOTAL** | **25** | ✅ **OPERATIONAL** |
 | **Total Tools Available** | **300+** | ✅ Ready to use |
 
 ---
@@ -35,7 +35,7 @@
 
 ---
 
-## 🔧 Configuration-Based Servers (19)
+## 🔧 Configuration-Based Servers (16)
 
 Located in: `~/Library/Application Support/Claude/claude_desktop_config.json`
 
