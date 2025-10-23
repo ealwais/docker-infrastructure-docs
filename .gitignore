@@ -20,6 +20,15 @@ consolidation_log.txt
 cleanup_validation_log.txt
 cleanup_log.txt
 
+# Sensitive configuration files with credentials
+services/homeassistant/powerwall_config_info.txt
+services/homeassistant/test_realtime_*.txt
+*_config_info.txt
+*.credentials
+secrets.yaml
+*token*.json
+*oauth*.json
+
 # Google Drive review staging
 google_drive_review/
 
