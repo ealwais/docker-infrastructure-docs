@@ -1,14 +1,20 @@
 # Docker Infrastructure - Quick Access Guide
 
-*Last Updated: 2025-08-27*
+*Last Updated: 2025-10-13*
 
 ## 🚀 Essential Documentation
+
+### Claude MCP Servers ⭐ NEW
+- [MCP Servers Status & Configuration](./status_reports/MCP_SERVERS_STATUS.md) - **13/13 servers operational**
+- [Desktop Commander Setup](./troubleshooting/DESKTOP_COMMANDER_SETUP.md) - File operations & terminal processes
+- [UniFi MCP Server](./services/UNIFI_MCP_SERVER.md) - Network management (60+ tools)
 
 ### Home Assistant
 - [Complete Setup & Configuration](./services/homeassistant/README.md)
 - [Integrations Guide](./services/homeassistant/INTEGRATIONS_COMPLETE_GUIDE.md)
 - [Dashboard Configuration](./services/homeassistant/DASHBOARD_COMPLETE_GUIDE.md)
 - [System Status](./services/homeassistant/SYSTEM_STATUS_CURRENT.md)
+- [Aqara Devices Status](./services/homeassistant/AQARA_DEVICES_STATUS_REPORT.md)
 
 #### Device Integrations
 - [Arlo Cameras](./services/homeassistant/ARLO_SETUP_COMPLETE.md)
@@ -16,16 +22,14 @@
 - [UniFi Protect](./services/homeassistant/UNIFI_PROTECT_COMPLETE.md)
 - [Zigbee/ZHA](./services/homeassistant/ZIGBEE_COMPLETE_GUIDE.md)
 
-### Streaming Services
-- [xTeve Configuration](./services/streaming/XTEVE_CONFIGURATION_GUIDE.md)
-- [TVHeadend Setup](./services/streaming/MSNBC_STREAM_GUIDE.md)
-- [EPG Management](./services/streaming/MERGED_M3U_UPDATE_FLOW.md)
-- [Channel Configuration](./services/streaming/CHANNEL_NUMBERING_EXPLAINED.md)
 
 ### Network Services
-- [Nginx Proxy Manager](./services/networking/nginx-setup.md)
-- [External Access Setup](./services/networking/EXTERNAL_ACCESS_SETUP.md)
 - [AdGuard Configuration](./services/networking/README.md)
+- [External Access Setup](./services/networking/EXTERNAL_ACCESS_SETUP.md)
+- ~~[Nginx Proxy Manager](./services/networking/nginx-setup.md)~~ *(Removed 2025-10-02)*
+- [Site-to-Site VPN Guide](./services/networking/SITE_TO_SITE_CONNECTION_GUIDE.md)
+- [Grandpa's Site Router](./services/networking/GRANDPA_SITE_ROUTER_GUIDE.md)
+- [UniFi ATA Setup](./services/networking/UNIFI_ATA_FINDINGS.md)
 
 ### Automation & Workflows
 - [n8n Workflows](./services/automation/README.md)
@@ -33,6 +37,9 @@
 - [GitHub Integration](./services/automation/github-setup.md)
 
 ## 📊 System Management
+
+### Current Status
+- [System Status October 2025](./status_reports/SYSTEM_STATUS_OCTOBER_2025.md) ⚠️ **NPM Removed - HTTP Only Access**
 
 ### Operations
 - [Backup & Restore](./services/homeassistant/BACKUP_AND_RESTORE_COMPLETE.md)
@@ -66,12 +73,13 @@ docker-compose pull && docker-compose up -d
 python3 /mnt/docker/generate_doc_map.py
 ```
 
-### Service URLs
-- **Home Assistant**: http://localhost:8123
-- **Portainer**: http://localhost:9000
-- **xTeve**: http://localhost:34400
-- **TVHeadend**: http://localhost:9981
-- **n8n**: http://localhost:5678
+### Service URLs (HTTP Only - No SSL)
+- **Sonarr**: http://sonarr.alwais.org (192.168.3.10:8989)
+- **SABnzbd**: http://sabnzbd.alwais.org (192.168.3.10:9090)
+- **AdGuard**: http://192.168.3.11:8080
+- **n8n**: http://192.168.3.11:5678
+- **Home Assistant**: http://192.168.3.20:8123
+- **Plex**: http://192.168.3.11:32400
 
 ## 📁 Documentation Structure
 
@@ -80,15 +88,18 @@ python3 /mnt/docker/generate_doc_map.py
 ├── QUICK_ACCESS.md          # This file
 ├── README.md                 # Main index
 ├── DOCUMENTATION_MAP.md      # Complete file listing
-├── architecture/             # System architecture
-├── services/                 # Service documentation
-│   ├── homeassistant/       # Consolidated HA docs
-│   ├── streaming/           # Media services
-│   ├── networking/          # Network services
-│   └── automation/          # Workflow automation
-├── runbooks/                # Operational procedures
-├── guides/                  # Setup guides
-└── archive/                 # Old documentation
+├── status_reports/          # System status reports
+├── scripts/                 # Utility scripts
+│   └── conversion/         # Media conversion scripts
+├── architecture/            # System architecture
+├── services/               # Service documentation
+│   ├── homeassistant/     # Consolidated HA docs
+│   ├── networking/        # Network services
+│   └── automation/        # Workflow automation
+├── runbooks/              # Operational procedures
+├── guides/                # Setup guides
+├── troubleshooting/       # Debug guides
+└── archive/               # Old documentation & logs
 ```
 
 ## 🔍 Finding Documentation

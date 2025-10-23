@@ -1,0 +1,385 @@
+# UDM Pro + AdGuard DNS Integration Guide
+
+## Current Status (October 1, 2025)
+
+### UDM Pro Information
+- **Hostname**: Alwais
+- **Management IP**: 192.168.253.1 (br0 - Default network)
+- **Kernel**: Linux 4.19.152-ui-alpine
+- **Architecture**: aarch64 (ARM64)
+
+### Network Configuration
+
+#### Active Networks
+| Network Name | Interface | Subnet | Gateway | Purpose |
+|--------------|-----------|--------|---------|---------|
+| Default | br0 | 192.168.253.0/24 | 192.168.253.1 | Management |
+| **Bones** | br3 | 192.168.3.0/24 | 192.168.3.1 | Main network |
+| camera | br2 | 192.168.2.0/24 | 192.168.2.1 | Cameras |
+| iot | br6 | 192.168.6.0/24 | 192.168.6.1 | IoT devices |
+| Servers | br7 | 192.168.7.0/24 | 192.168.7.1 | Servers |
+| JumboFrame | br10 | 192.168.10.0/24 | 192.168.10.1 | High-speed |
+| Neena | br12 | 192.168.12.0/24 | 192.168.12.1 | User network |
+| WireGuard | wgsrv1 | 192.168.13.0/24 | 192.168.13.1 | VPN |
+
+### Current DNS Configuration by Network
+
+#### Bones Network (192.168.3.0/24) - PRIMARY NETWORK
+**Current DNS Order:**
+1. 1.1.1.1 (Cloudflare) ⚠️
+2. 192.168.3.1 (UDM Pro) ⚠️
+3. **192.168.3.11 (AdGuard)** ✓ Present but not primary
+4. 8.8.8.8 (Google) ⚠️
+
+**DHCP Range**: 192.168.3.6 - 192.168.3.254
+**Lease Time**: 86400 seconds (24 hours)
+
+#### Default Network (192.168.253.0/24)
+**Current DNS Order:**
+1. 1.1.1.1 (Cloudflare)
+2. 192.168.3.30
+3. 192.168.3.1 (UDM Pro)
+
+#### JumboFrame Network (192.168.10.0/24)
+**Current DNS Order:**
+1. 1.1.1.1 (Cloudflare)
+2. 192.168.3.11 (AdGuard) ✓
+3. 192.168.3.1 (UDM Pro)
+
+#### Neena Network (192.168.12.0/24)
+**Current DNS Order:**
+1. **192.168.3.11 (AdGuard)** ✓ Already primary!
+2. 192.158.3.1 (typo?)
+3. 1.1.1.1 (Cloudflare)
+4. 8.8.8.8 (Google)
+
+#### Servers Network (192.168.7.0/24)
+**Current DNS Order:**
+1. **192.168.3.11 (AdGuard)** ✓ Already primary!
+2. 192.168.3.1 (UDM Pro)
+3. 1.1.1.1 (Cloudflare)
+4. 8.8.8.8 (Google)
+
+## Problem Analysis
+
+### Issues Found
+
+1. **Bones Network (Main)**: AdGuard is listed but not primary
+   - Clients will use 1.1.1.1 first, bypassing AdGuard filtering
+   - Only falls back to AdGuard if Cloudflare fails
+
+2. **DNS Bypass**: Multiple public DNS servers allow bypass
+   - Clients can use 1.1.1.1, 8.8.8.8 directly
+   - AdGuard filtering not enforced
+
+3. **Inconsistent Configuration**: Different networks have different DNS priorities
+   - Neena & Servers: AdGuard is primary ✓
+   - Bones & Default: External DNS is primary ✗
+
+### Recommended Configuration
+
+#### For All Networks (Optimal)
+**DNS Server Priority:**
+1. **192.168.3.11** (AdGuard) - Primary, with filtering
+2. ~~Remove all others~~ OR keep 192.168.3.1 as backup only
+
+**Benefits:**
+- All DNS queries go through AdGuard
+- Ad/tracker blocking enforced network-wide
+- Single point of DNS configuration
+- Query logging in AdGuard
+- Safe Search enforcement
+- Custom DNS rules
+
+## Integration Steps
+
+### Method 1: UniFi Network Web UI (Recommended)
+
+#### Step 1: Access UniFi Controller
+```
+URL: https://protect.alwais.org
+  or: https://192.168.3.1
+  or: https://192.168.253.1
+```
+
+#### Step 2: Configure Bones Network (192.168.3.0/24)
+1. **Login** to UniFi Network controller
+2. Navigate to: **Settings** → **Networks**
+3. Find and click: **Bones** network
+4. Scroll to: **DHCP** section
+5. Find: **DHCP DNS Server**
+6. **Change to:**
+   - DNS Server 1: `192.168.3.11` (AdGuard)
+   - DNS Server 2: (leave empty or `192.168.3.1` as backup)
+   - ~~Remove: 1.1.1.1, 8.8.8.8~~
+7. Click: **Apply Changes**
+
+#### Step 3: Configure Default Network (192.168.253.0/24)
+Repeat same steps for Default network:
+- DNS Server 1: `192.168.3.11`
+- DNS Server 2: (optional backup)
+
+#### Step 4: Configure JumboFrame Network (192.168.10.0/24)
+Already has AdGuard, just need to move to primary:
+- DNS Server 1: `192.168.3.11` (move from 2nd position)
+- Remove or demote: 1.1.1.1
+
+#### Step 5: Verify Other Networks
+Check and update as needed:
+- camera (br2)
+- iot (br6)
+- ~~Servers (br7) - Already correct~~
+- ~~Neena (br12) - Already correct~~
+
+#### Step 6: Force DHCP Renewal
+After changes:
+1. Wait for DHCP lease expiration (24 hours), OR
+2. Force renewal on clients:
+   - Windows: `ipconfig /release && ipconfig /renew`
+   - Mac/Linux: `sudo dhclient -r && sudo dhclient`
+   - Or reboot devices
+
+### Method 2: SSH Configuration (Advanced)
+
+⚠️ **Warning**: Changes via SSH may be overwritten by UniFi controller. Use Web UI method instead.
+
+#### View Current Configuration
+```bash
+ssh root@192.168.253.1
+cat /run/dnsmasq.dhcp.conf.d/dhcp.dhcpServers-net_Bones_br3_192-168-3-0-24.conf
+```
+
+#### Configuration File Location
+```
+/run/dnsmasq.dhcp.conf.d/dhcp.dhcpServers-net_Bones_br3_192-168-3-0-24.conf
+```
+
+**Current line:**
+```
+dhcp-option=tag:net_Bones_br3_192-168-3-0-24,option:dns-server,1.1.1.1,192.168.3.1,192.168.3.11,8.8.8.8
+```
+
+**Desired line:**
+```
+dhcp-option=tag:net_Bones_br3_192-168-3-0-24,option:dns-server,192.168.3.11
+```
+
+⚠️ These files are auto-generated by UniFi controller. Manual edits will be lost on restart.
+
+### Method 3: UniFi API (Programmatic)
+
+Can be done via UniFi API but requires authentication token and proper permissions.
+**Recommendation**: Use Web UI for simplicity.
+
+## Verification Steps
+
+### 1. Check DHCP Configuration on UDM Pro
+```bash
+ssh root@192.168.253.1
+cat /run/dnsmasq.dhcp.conf.d/*.conf | grep -A2 "net_Bones"
+```
+
+Expected output:
+```
+dhcp-option=tag:net_Bones_br3_192-168-3-0-24,option:dns-server,192.168.3.11
+```
+
+### 2. Check Client DNS Settings
+On a client device (after DHCP renewal):
+
+**Windows:**
+```cmd
+ipconfig /all
+```
+Look for: DNS Servers: 192.168.3.11
+
+**Mac/Linux:**
+```bash
+cat /etc/resolv.conf
+```
+Look for: nameserver 192.168.3.11
+
+**Alternative (any OS):**
+```bash
+nslookup google.com
+```
+Should show: Server: 192.168.3.11
+
+### 3. Verify DNS Queries in AdGuard
+1. Open AdGuard Web UI: https://adguard.alwais.org
+2. Go to: **Query Log**
+3. Generate DNS queries on client
+4. Verify queries appear in AdGuard log
+
+### 4. Test Ad Blocking
+Visit test sites:
+- http://testads.com
+- Ads should be blocked
+- Check AdGuard query log for blocked domains
+
+## Enforcing DNS (Advanced)
+
+### Optional: Block External DNS at Firewall
+
+To prevent clients from bypassing AdGuard by using external DNS (1.1.1.1, 8.8.8.8):
+
+#### UniFi Firewall Rules
+1. **Settings** → **Firewall & Security** → **Firewall Rules**
+2. Create new rule:
+   - **Name**: Block External DNS
+   - **Action**: Drop
+   - **Protocol**: TCP/UDP
+   - **Source**: Network (Bones, etc.)
+   - **Destination**: Any
+   - **Port**: 53
+   - **Advanced**: Exclude 192.168.3.11
+3. Apply rule
+
+This forces all DNS through AdGuard even if clients try to use 8.8.8.8.
+
+⚠️ **Warning**: This can break some devices/apps that hardcode DNS servers.
+
+## Troubleshooting
+
+### Clients Still Using Wrong DNS
+1. Check DHCP lease hasn't expired yet
+2. Force DHCP renewal on client
+3. Reboot client device
+4. Check UniFi controller applied changes
+5. Verify DHCP config file on UDM Pro
+
+### AdGuard Not Receiving Queries
+1. Check AdGuard is running: `docker ps --filter name=adguard`
+2. Test DNS resolution: `nslookup google.com 192.168.3.11`
+3. Check AdGuard logs: `docker logs adguard`
+4. Verify port 53 is open on firewall
+
+### Some Clients Work, Others Don't
+1. Check DHCP lease times vary
+2. Wait 24 hours for all leases to renew
+3. Or manually renew DHCP on problem clients
+4. Check for static DNS on problem clients
+
+### DNS Resolution Slow
+1. Check AdGuard cache settings (currently 4MB)
+2. Verify upstream DNS is responding (Quad9)
+3. Check network latency to AdGuard
+4. Review AdGuard query log for issues
+
+## Current State Summary
+
+### Networks Using AdGuard as Primary ✓
+- **Bones (br3)** - 192.168.3.0/24 - MAIN NETWORK ✅ **CONFIGURED October 1, 2025**
+- Neena (br12) - 192.168.12.0/24
+- Servers (br7) - 192.168.7.0/24
+
+### Networks Needing Configuration ⚠️
+- Default (br0) - 192.168.253.0/24
+- JumboFrame (br10) - 192.168.10.0/24
+- camera (br2) - 192.168.2.0/24
+- iot (br6) - 192.168.6.0/24
+
+## Post-Configuration Benefits
+
+Once configured, you will have:
+
+✅ **Network-wide ad blocking** via AdGuard
+✅ **Malware/tracker protection** on all devices
+✅ **Safe Search** enforcement
+✅ **Centralized DNS logging** for troubleshooting
+✅ **Custom DNS rules** (local domain resolution)
+✅ **DNS-level parental controls** (if enabled)
+✅ **Privacy protection** (no DNS queries to Google/Cloudflare)
+✅ **Query analytics** and statistics
+✅ **Consistent DNS** across all networks
+
+## Configuration File Locations
+
+### UDM Pro
+- **DHCP Configs**: `/run/dnsmasq.dhcp.conf.d/`
+- **DNS Configs**: `/run/dnsmasq.dns.conf.d/`
+- **Shared Config**: `/run/dnsmasq.dhcp.conf.d/shared.conf`
+
+### AdGuard
+- **Config**: `/mnt/docker/adguard-npm/adguard/conf/AdGuardHome.yaml`
+- **Upstream DNS**: Quad9 (https://dns10.quad9.net/dns-query)
+- **Web UI**: https://adguard.alwais.org
+- **DNS Port**: 53 (192.168.3.11:53)
+
+## References
+
+- UDM Pro Documentation: https://help.ui.com/hc/en-us/categories/200320654
+- AdGuard Home: https://adguard.com/en/adguard-home/overview.html
+- AdGuard Config: /mnt/docker/documentation/services/networking/adguard_configuration.md
+- NPM Config: /mnt/docker/documentation/services/networking/npm_configuration.md
+
+## Next Steps
+
+1. ✅ Document current configuration (this file)
+2. ✅ Configure Bones network via UniFi API - **COMPLETED October 1, 2025**
+3. ⏳ Configure remaining networks (Default, JumboFrame, camera, iot)
+4. ⏳ Test DNS resolution on clients (wait for DHCP lease renewal)
+5. ⏳ Verify AdGuard receiving queries
+6. ⏳ Optional: Configure firewall rules to enforce DNS
+7. ⏳ Monitor AdGuard query logs for 24-48 hours
+
+## Configuration History
+
+### October 1, 2025 - Bones Network DNS Configuration
+
+**Method**: UniFi API (programmatic)
+**Authenticated as**: emalwais (Super Admin)
+
+**Before:**
+```
+DNS Server 1: 1.1.1.1 (Cloudflare)
+DNS Server 2: 192.168.3.1 (UDM Pro)
+DNS Server 3: 192.168.3.11 (AdGuard)
+DNS Server 4: 8.8.8.8 (Google)
+```
+
+**After:**
+```
+DNS Server 1: 192.168.3.11 (AdGuard) ← PRIMARY
+DNS Server 2: 192.168.3.1 (UDM Pro) ← BACKUP
+DNS Server 3: (removed)
+DNS Server 4: (removed)
+```
+
+**Verification:**
+```bash
+# SSH to UDM Pro
+ssh root@192.168.253.1
+
+# Check dnsmasq configuration
+cat /run/dnsmasq.dhcp.conf.d/dhcp.dhcpServers-net_Bones_br3_192-168-3-0-24.conf | grep dns-server
+# Output: dhcp-option=tag:net_Bones_br3_192-168-3-0-24,option:dns-server,192.168.3.11,192.168.3.1
+```
+
+**API Endpoint Used:**
+```
+PUT https://127.0.0.1/proxy/network/api/s/default/rest/networkconf/6806be0181cdb675295ff412
+```
+
+**Authentication:**
+- Login endpoint: `POST https://127.0.0.1/api/auth/login`
+- CSRF token required for PUT requests
+- Session cookie-based authentication
+
+**Impact:**
+- All new DHCP clients on Bones network will receive 192.168.3.11 (AdGuard) as primary DNS
+- 192.168.3.1 (UDM Pro) serves as backup if AdGuard is unavailable
+- Existing clients will update after DHCP lease renewal (24 hours) or manual renewal
+- Removed Cloudflare (1.1.1.1) and Google (8.8.8.8) DNS servers
+- AdGuard will handle all DNS queries under normal operation
+- Failover to UDM Pro DNS only if AdGuard is down
+
+## Notes
+
+- Configuration changes via Web UI are persistent
+- SSH file edits will be overwritten by controller
+- DHCP leases renew every 24 hours
+- Some devices cache DNS settings
+- Reboot may be needed for full effect
+- AdGuard already configured and working
+- Just need to update DHCP DNS priority

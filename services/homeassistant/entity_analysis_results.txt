@@ -1,0 +1,571 @@
+HOME ASSISTANT DASHBOARD ENTITY ANALYSIS
+================================================================================
+
+ENTITIES BY DASHBOARD:
+--------------------------------------------------------------------------------
+
+dashboard_docker.yaml: (5 entities)
+  binary_sensor: 2 entities
+    - binary_sensor.portainer_docker_server_available
+    - binary_sensor.portainer_local_available
+  sensor: 3 entities
+    - sensor.docker_containers_running
+    - sensor.docker_containers_total
+    - sensor.docker_images_count
+
+dashboard_docker_portainer.yaml: (9 entities)
+  binary_sensor: 3 entities
+    - binary_sensor.docker_server_portainer_online
+    - binary_sensor.portainer_docker_server_available
+    - binary_sensor.portainer_local_available
+  input_button: 1 entities
+    - input_button.open_docker_server_portainer
+  sensor: 5 entities
+    - sensor.docker_containers_running
+    - sensor.docker_containers_total
+    - sensor.docker_images_count
+    - sensor.local_docker_containers
+    - sensor.local_docker_images
+
+dashboard_docker_portainer_fixed.yaml: (0 entities)
+
+dashboard_docker_simple.yaml: (0 entities)
+
+dashboard_energy.yaml: (3 entities)
+  sensor: 3 entities
+    - sensor.anker_solix_solar_power
+    - sensor.solar_inverter_1_power
+    - sensor.solar_inverter_2_power
+
+dashboard_family.yaml: (2 entities)
+  input_boolean: 2 entities
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
+
+dashboard_family_basic.yaml: (3 entities)
+  sensor: 2 entities
+    - sensor.date
+    - sensor.time
+  sun: 1 entities
+    - sun.sun
+
+dashboard_family_final.yaml: (21 entities)
+  fan: 5 entities
+    - fan.ceiling1_fan
+    - fan.ceiling_fan_2
+    - fan.dyson_ceiling_fan
+    - fan.office_ceiling_fan
+    - fan.primary_room_fan_2
+  light: 10 entities
+    - light.ceiling_fan_down_light
+    - light.ceiling_fan_up_light
+    - light.hallway_main_lights
+    - light.kitchen_main_lights
+    - light.leviton_device_37e1
+    - light.light
+    - light.lumi_lumi_switch_b1laus01
+    - light.lumi_lumi_switch_b1laus01_2
+    - light.office_ceiling_fan_light
+    - light.primary_room_fan
+  switch: 6 entities
+    - switch.bae_fan
+    - switch.desk_light
+    - switch.device
+    - switch.devicew
+    - switch.dining_rom_power
+    - switch.lumi_lumi_plug_maus01
+
+dashboard_family_simple.yaml: (0 entities)
+
+dashboard_family_test.yaml: (1 entities)
+  light: 1 entities
+    - light.all_lights
+
+dashboard_family_working.yaml: (7 entities)
+  light: 3 entities
+    - light.bedroom
+    - light.kitchen
+    - light.living_room
+  sun: 1 entities
+    - sun.sun
+  switch: 3 entities
+    - switch.outlet_1
+    - switch.outlet_2
+    - switch.plug_1
+
+dashboard_ffmpeg.yaml: (15 entities)
+  sensor: 15 entities
+    - sensor.active_streams
+    - sensor.buffer_read_speed
+    - sensor.buffer_write_speed
+    - sensor.ffmpeg_cpu_usage
+    - sensor.ffmpeg_memory_usage
+    - sensor.ffmpeg_process_count
+    - sensor.plex_bandwidth
+    - sensor.plex_direct_play_sessions
+    - sensor.plex_transcode_sessions
+    - sensor.plex_watching
+    - sensor.queued_transcodes
+    - sensor.server_cpu_usage
+    - sensor.stream_buffer_health
+    - sensor.transcode_buffer_usage
+    - sensor.transcode_fps
+
+dashboard_home_networking.yaml: (30 entities)
+  binary_sensor: 2 entities
+    - binary_sensor.qnap_nas
+    - binary_sensor.synology_nas
+  sensor: 22 entities
+    - sensor.active_streams
+    - sensor.adguard_blocked_queries
+    - sensor.adguard_dns_queries
+    - sensor.ffmpeg_cpu_usage
+    - sensor.ffmpeg_memory_usage
+    - sensor.ffmpeg_process_count
+    - sensor.plex_watching
+    - sensor.qnap_cpu_usage
+    - sensor.qnap_memory_usage
+    - sensor.radarr_upcoming
+    - sensor.sabnzbd_status
+    - sensor.sonarr_upcoming
+    - sensor.speedtestdotnet_download
+    - sensor.speedtestdotnet_ping
+    - sensor.speedtestdotnet_upload
+    - sensor.synology_dsm_cpu_utilization_total
+    - sensor.synology_dsm_memory_usage_real
+    - sensor.transcode_buffer_usage
+    - sensor.unifi_gateway_guest_clients
+    - sensor.unifi_gateway_lan_clients
+    - sensor.unifi_gateway_wlan_clients
+    - sensor.unifi_gateway_www_clients
+  switch: 6 entities
+    - switch.adguard_home_filtering
+    - switch.adguard_home_protection
+    - switch.unifi_network_allow_ssh
+    - switch.unifi_network_n8n
+    - switch.unifi_network_plex
+    - switch.unifi_network_sabnzbd
+
+dashboard_main_overview.yaml: (21 entities)
+  fan: 5 entities
+    - fan.ceiling1_fan
+    - fan.ceiling_fan_2
+    - fan.dyson_ceiling_fan
+    - fan.office_ceiling_fan
+    - fan.primary_room_fan_2
+  light: 10 entities
+    - light.ceiling_fan_down_light
+    - light.ceiling_fan_up_light
+    - light.hallway_main_lights
+    - light.kitchen_main_lights
+    - light.leviton_device_37e1
+    - light.light
+    - light.lumi_lumi_switch_b1laus01
+    - light.lumi_lumi_switch_b1laus01_2
+    - light.office_ceiling_fan_light
+    - light.primary_room_fan
+  switch: 6 entities
+    - switch.bae_fan
+    - switch.desk_light
+    - switch.device
+    - switch.devicew
+    - switch.dining_rom_power
+    - switch.lumi_lumi_plug_maus01
+
+dashboard_main_overview_backup.yaml: (21 entities)
+  fan: 5 entities
+    - fan.ceiling1_fan
+    - fan.ceiling_fan_2
+    - fan.dyson_ceiling_fan
+    - fan.office_ceiling_fan
+    - fan.primary_room_fan_2
+  light: 10 entities
+    - light.ceiling_fan_down_light
+    - light.ceiling_fan_up_light
+    - light.hallway_main_lights
+    - light.kitchen_main_lights
+    - light.leviton_device_37e1
+    - light.light
+    - light.lumi_lumi_switch_b1laus01
+    - light.lumi_lumi_switch_b1laus01_2
+    - light.office_ceiling_fan_light
+    - light.primary_room_fan
+  switch: 6 entities
+    - switch.bae_fan
+    - switch.desk_light
+    - switch.device
+    - switch.devicew
+    - switch.dining_rom_power
+    - switch.lumi_lumi_plug_maus01
+
+dashboard_main_overview_clean.yaml: (0 entities)
+
+dashboard_media.yaml: (17 entities)
+  media_player: 3 entities
+    - media_player.apple_tv
+    - media_player.plex_
+    - media_player.samsung
+  sensor: 14 entities
+    - sensor.plex
+    - sensor.plex_recently_added
+    - sensor.radarr_disk_space
+    - sensor.radarr_movies
+    - sensor.radarr_queue
+    - sensor.radarr_upcoming
+    - sensor.sabnzbd_left
+    - sensor.sabnzbd_queue
+    - sensor.sabnzbd_speed
+    - sensor.sabnzbd_status
+    - sensor.sonarr_disk_space
+    - sensor.sonarr_queue
+    - sensor.sonarr_series
+    - sensor.sonarr_upcoming
+
+dashboard_overview.yaml: (8 entities)
+  input_boolean: 2 entities
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
+  light: 4 entities
+    - light.hallway_main_lights
+    - light.kitchen_main_lights
+    - light.office_ceiling_fan_light
+    - light.primary_room_fan
+  sun: 1 entities
+    - sun.sun
+  weather: 1 entities
+    - weather.home
+
+dashboard_smart_home.yaml: (4 entities)
+  climate: 1 entities
+    - climate.carrier_thermostat
+  input_boolean: 2 entities
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
+  light: 1 entities
+    - light.all_lights
+
+dashboard_tesla_energy.yaml: (17 entities)
+  automation: 2 entities
+    - automation.powerwall_grid_outage_notification
+    - automation.powerwall_low_battery_alert
+  binary_sensor: 1 entities
+    - binary_sensor.powerwall_grid_connected
+  sensor: 13 entities
+    - sensor.powerwall_battery_level
+    - sensor.powerwall_battery_power
+    - sensor.powerwall_capacity
+    - sensor.powerwall_energy_remaining
+    - sensor.powerwall_grid_power
+    - sensor.powerwall_load_power
+    - sensor.powerwall_operation_mode
+    - sensor.solar_energy_today_total
+    - sensor.solar_inverter_1_energy_today
+    - sensor.solar_inverter_1_power
+    - sensor.solar_inverter_2_energy_today
+    - sensor.solar_inverter_2_power
+    - sensor.solar_power_total
+  sun: 1 entities
+    - sun.sun
+
+dashboard_tesla_energy_simple.yaml: (0 entities)
+
+dashboard_ubiquiti.yaml: (34 entities)
+  binary_sensor: 3 entities
+    - binary_sensor.g4_doorbell_pro_doorbell
+    - binary_sensor.g5_pro_motion
+    - binary_sensor.unifi_gateway_wan
+  camera: 2 entities
+    - camera.g4_doorbell_pro_high
+    - camera.g5_pro_high
+  group: 4 entities
+    - group.computers
+    - group.iot_devices
+    - group.media_devices
+    - group.phones
+  select: 2 entities
+    - select.g4_doorbell_pro_recording_mode
+    - select.g5_pro_recording_mode
+  sensor: 21 entities
+    - sensor.unifi_ap_bedroom_clients
+    - sensor.unifi_ap_living_room_clients
+    - sensor.unifi_ap_office_clients
+    - sensor.unifi_gateway_guest_clients
+    - sensor.unifi_gateway_lan_clients
+    - sensor.unifi_gateway_uptime
+    - sensor.unifi_gateway_wan_download
+    - sensor.unifi_gateway_wan_ip
+    - sensor.unifi_gateway_wan_upload
+    - sensor.unifi_gateway_wlan_clients
+    - sensor.unifi_gateway_www_clients
+    - sensor.unifi_gateway_www_speedtest_download
+    - sensor.unifi_gateway_www_speedtest_ping
+    - sensor.unifi_gateway_www_speedtest_upload
+    - sensor.unifi_protect_disk_usage
+    - sensor.unifi_protect_recording_capacity
+    - sensor.unifi_protect_uptime
+    - sensor.unifi_switch_24_poe_ports_active
+    - sensor.unifi_switch_24_poe_power
+    - sensor.unifi_switch_24_poe_temperature
+    - sensor.unifi_switch_24_poe_uptime
+  switch: 2 entities
+    - switch.g4_doorbell_pro_privacy_mode
+    - switch.g5_pro_privacy_mode
+
+dashboard_ubiquiti_active.yaml: (9 entities)
+  binary_sensor: 2 entities
+    - binary_sensor.unifi_
+    - binary_sensor.unifi_gateway_wan
+  camera: 2 entities
+    - camera.g4_doorbell_pro
+    - camera.g5_pro
+  device_tracker: 1 entities
+    - device_tracker.unifi_ap_
+  sensor: 3 entities
+    - sensor.unifi_gateway_wan_download
+    - sensor.unifi_gateway_wan_latency
+    - sensor.unifi_gateway_wan_upload
+  switch: 1 entities
+    - switch.unifi_
+
+dashboard_ubiquiti_minimal.yaml: (0 entities)
+
+dashboard_ubiquiti_safe.yaml: (15 entities)
+  button: 1 entities
+    - button.dream_machine_special_edition_unifi_u6_mesh_power_cycle
+  sensor: 5 entities
+    - sensor.dream_machine_special_edition_cpu_utilization
+    - sensor.dream_machine_special_edition_memory_utilization
+    - sensor.dream_machine_special_edition_state
+    - sensor.dream_machine_special_edition_unifi_u6_mesh_poe_power
+    - sensor.dream_machine_special_edition_uptime
+  switch: 9 entities
+    - switch.dream_machine_special_edition_bedroom_poe
+    - switch.dream_machine_special_edition_garage_poe_poe
+    - switch.dream_machine_special_edition_liz_s_office_poe
+    - switch.dream_machine_special_edition_unifi_u6_mesh_poe
+    - switch.unifi_network_ha
+    - switch.unifi_network_n8n
+    - switch.unifi_network_plex
+    - switch.unifi_network_sabnzbd
+    - switch.unifi_network_vlc
+
+dashboard_ubiquiti_simple.yaml: (0 entities)
+
+dashboard_unifi_diagnostic.yaml: (3 entities)
+  binary_sensor: 1 entities
+    - binary_sensor.unifi_gateway
+  sensor: 2 entities
+    - sensor.unifi_gateway_wan
+    - sensor.unifi_gateway_www_clients
+
+dashboard_unifi_modern.yaml: (7 entities)
+  binary_sensor: 1 entities
+    - binary_sensor.unifi_gateway
+  sensor: 6 entities
+    - sensor.unifi_gateway_wlan_clients
+    - sensor.unifi_gateway_www_clients
+    - sensor.unifi_gateway_www_xput_down
+    - sensor.unifi_gateway_www_xput_up
+    - sensor.unifi_status
+    - sensor.unifi_switch_24_poe_uptime
+
+test-dashboard.yaml: (0 entities)
+
+ui-lovelace-old.yaml: (17 entities)
+  fan: 5 entities
+    - fan.ceiling1_fan
+    - fan.ceiling_fan_2
+    - fan.dyson_ceiling_fan
+    - fan.office_ceiling_fan
+    - fan.primary_room_fan_2
+  input_boolean: 2 entities
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
+  light: 4 entities
+    - light.hallway_main_lights
+    - light.kitchen_main_lights
+    - light.office_ceiling_fan_light
+    - light.primary_room_fan
+  sensor: 2 entities
+    - sensor.date
+    - sensor.time
+  sun: 1 entities
+    - sun.sun
+  switch: 2 entities
+    - switch.desk_light
+    - switch.dining_rom_power
+  weather: 1 entities
+    - weather.home
+
+ui-lovelace.yaml: (0 entities)
+
+
+ALL UNIQUE ENTITIES:
+--------------------------------------------------------------------------------
+automation.powerwall_grid_outage_notification
+automation.powerwall_low_battery_alert
+binary_sensor.docker_server_portainer_online
+binary_sensor.g4_doorbell_pro_doorbell
+binary_sensor.g5_pro_motion
+binary_sensor.portainer_docker_server_available
+binary_sensor.portainer_local_available
+binary_sensor.powerwall_grid_connected
+binary_sensor.qnap_nas
+binary_sensor.synology_nas
+binary_sensor.unifi_
+binary_sensor.unifi_gateway
+binary_sensor.unifi_gateway_wan
+button.dream_machine_special_edition_unifi_u6_mesh_power_cycle
+camera.g4_doorbell_pro
+camera.g4_doorbell_pro_high
+camera.g5_pro
+camera.g5_pro_high
+climate.carrier_thermostat
+device_tracker.unifi_ap_
+fan.ceiling1_fan
+fan.ceiling_fan_2
+fan.dyson_ceiling_fan
+fan.office_ceiling_fan
+fan.primary_room_fan_2
+group.computers
+group.iot_devices
+group.media_devices
+group.phones
+input_boolean.guest_mode
+input_boolean.vacation_mode
+input_button.open_docker_server_portainer
+light.all_lights
+light.bedroom
+light.ceiling_fan_down_light
+light.ceiling_fan_up_light
+light.hallway_main_lights
+light.kitchen
+light.kitchen_main_lights
+light.leviton_device_37e1
+light.light
+light.living_room
+light.lumi_lumi_switch_b1laus01
+light.lumi_lumi_switch_b1laus01_2
+light.office_ceiling_fan_light
+light.primary_room_fan
+media_player.apple_tv
+media_player.plex_
+media_player.samsung
+select.g4_doorbell_pro_recording_mode
+select.g5_pro_recording_mode
+sensor.active_streams
+sensor.adguard_blocked_queries
+sensor.adguard_dns_queries
+sensor.anker_solix_solar_power
+sensor.buffer_read_speed
+sensor.buffer_write_speed
+sensor.date
+sensor.docker_containers_running
+sensor.docker_containers_total
+sensor.docker_images_count
+sensor.dream_machine_special_edition_cpu_utilization
+sensor.dream_machine_special_edition_memory_utilization
+sensor.dream_machine_special_edition_state
+sensor.dream_machine_special_edition_unifi_u6_mesh_poe_power
+sensor.dream_machine_special_edition_uptime
+sensor.ffmpeg_cpu_usage
+sensor.ffmpeg_memory_usage
+sensor.ffmpeg_process_count
+sensor.local_docker_containers
+sensor.local_docker_images
+sensor.plex
+sensor.plex_bandwidth
+sensor.plex_direct_play_sessions
+sensor.plex_recently_added
+sensor.plex_transcode_sessions
+sensor.plex_watching
+sensor.powerwall_battery_level
+sensor.powerwall_battery_power
+sensor.powerwall_capacity
+sensor.powerwall_energy_remaining
+sensor.powerwall_grid_power
+sensor.powerwall_load_power
+sensor.powerwall_operation_mode
+sensor.qnap_cpu_usage
+sensor.qnap_memory_usage
+sensor.queued_transcodes
+sensor.radarr_disk_space
+sensor.radarr_movies
+sensor.radarr_queue
+sensor.radarr_upcoming
+sensor.sabnzbd_left
+sensor.sabnzbd_queue
+sensor.sabnzbd_speed
+sensor.sabnzbd_status
+sensor.server_cpu_usage
+sensor.solar_energy_today_total
+sensor.solar_inverter_1_energy_today
+sensor.solar_inverter_1_power
+sensor.solar_inverter_2_energy_today
+sensor.solar_inverter_2_power
+sensor.solar_power_total
+sensor.sonarr_disk_space
+sensor.sonarr_queue
+sensor.sonarr_series
+sensor.sonarr_upcoming
+sensor.speedtestdotnet_download
+sensor.speedtestdotnet_ping
+sensor.speedtestdotnet_upload
+sensor.stream_buffer_health
+sensor.synology_dsm_cpu_utilization_total
+sensor.synology_dsm_memory_usage_real
+sensor.time
+sensor.transcode_buffer_usage
+sensor.transcode_fps
+sensor.unifi_ap_bedroom_clients
+sensor.unifi_ap_living_room_clients
+sensor.unifi_ap_office_clients
+sensor.unifi_gateway_guest_clients
+sensor.unifi_gateway_lan_clients
+sensor.unifi_gateway_uptime
+sensor.unifi_gateway_wan
+sensor.unifi_gateway_wan_download
+sensor.unifi_gateway_wan_ip
+sensor.unifi_gateway_wan_latency
+sensor.unifi_gateway_wan_upload
+sensor.unifi_gateway_wlan_clients
+sensor.unifi_gateway_www_clients
+sensor.unifi_gateway_www_speedtest_download
+sensor.unifi_gateway_www_speedtest_ping
+sensor.unifi_gateway_www_speedtest_upload
+sensor.unifi_gateway_www_xput_down
+sensor.unifi_gateway_www_xput_up
+sensor.unifi_protect_disk_usage
+sensor.unifi_protect_recording_capacity
+sensor.unifi_protect_uptime
+sensor.unifi_status
+sensor.unifi_switch_24_poe_ports_active
+sensor.unifi_switch_24_poe_power
+sensor.unifi_switch_24_poe_temperature
+sensor.unifi_switch_24_poe_uptime
+sun.sun
+switch.adguard_home_filtering
+switch.adguard_home_protection
+switch.bae_fan
+switch.desk_light
+switch.device
+switch.devicew
+switch.dining_rom_power
+switch.dream_machine_special_edition_bedroom_poe
+switch.dream_machine_special_edition_garage_poe_poe
+switch.dream_machine_special_edition_liz_s_office_poe
+switch.dream_machine_special_edition_unifi_u6_mesh_poe
+switch.g4_doorbell_pro_privacy_mode
+switch.g5_pro_privacy_mode
+switch.lumi_lumi_plug_maus01
+switch.outlet_1
+switch.outlet_2
+switch.plug_1
+switch.unifi_
+switch.unifi_network_allow_ssh
+switch.unifi_network_ha
+switch.unifi_network_n8n
+switch.unifi_network_plex
+switch.unifi_network_sabnzbd
+switch.unifi_network_vlc
+weather.home

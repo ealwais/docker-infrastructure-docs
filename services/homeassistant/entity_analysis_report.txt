@@ -1,0 +1,109 @@
+# Home Assistant Entity Analysis Report
+Generated: 2025-08-12
+
+## SUMMARY OF FINDINGS
+
+### 1. DUPLICATE AND CONFUSING ENTITY NAMES
+
+#### Fan/Light Naming Conflicts
+These entities appear to be the same device with both fan and light capabilities:
+- `light.primary_room_fan` (used 4 times) - Light entity for a fan
+- `fan.primary_room_fan_2` (used 3 times) - Duplicate fan entity?
+- `light.office_ceiling_fan_light` (used 4 times) - Light part of ceiling fan
+- `fan.office_ceiling_fan` (used 3 times) - Fan part of same device
+
+#### Ceiling Fan Duplicates
+Multiple entities that seem to represent similar devices:
+- `fan.ceiling_fan_2` (used 3 times)
+- `fan.ceiling1_fan` (used 3 times) - Inconsistent naming (ceiling1 vs ceiling_fan)
+- `light.ceiling_fan_up_light` (used 3 times)
+- `light.ceiling_fan_down_light` (used 3 times)
+
+### 2. ENTITIES IN WRONG DOMAIN
+
+#### Switches Controlling Lights/Fans
+These should potentially be in the light/fan domain:
+- `switch.desk_light` (used 3 times) - Should be light.desk_light
+- `switch.bae_fan` (used 3 times) - Should be fan.bae_fan
+
+### 3. GENERIC/PROBLEMATIC ENTITY NAMES
+
+#### Too Generic
+- `light.light` - Completely generic, no descriptive value
+- `switch.device` - Generic placeholder name
+- `sensor.date` - Generic date sensor
+- `sensor.time` - Generic time sensor
+- `sensor.plex` - Should be more specific (e.g., sensor.plex_status)
+
+#### Cryptic Device Names
+- `light.leviton_device_37e1` - Should have descriptive name
+- `light.lumi_lumi_switch_b1laus01` - ZHA/Zigbee device with technical name
+- `light.lumi_lumi_switch_b1laus01_2` - Duplicate with "_2" suffix
+- `switch.lumi_lumi_plug_maus01` - Technical device name
+
+### 4. INCONSISTENT NAMING PATTERNS
+
+#### Room Naming Inconsistencies
+- Some use `_main_lights` suffix: `light.kitchen_main_lights`, `light.hallway_main_lights`
+- Others use simple names: `light.kitchen`, `light.living_room`, `light.bedroom`
+- Mixed patterns make it hard to find related entities
+
+#### Integration-Specific Issues
+- UniFi entities have good consistent naming (sensor.unifi_*)
+- Lumi/ZHA devices keep technical names instead of friendly names
+- Some entities missing integration prefixes
+
+### 5. POTENTIAL GHOST/ORPHANED ENTITIES
+
+#### Possible Test/Temporary Entities
+- `switch.devicew` - Appears to be incomplete name
+- `switch.device` - Generic test entity
+- `switch.dining_rom_power` - Typo in name ("rom" instead of "room")
+
+### 6. ENTITIES APPEARING IN MULTIPLE CATEGORIES
+
+#### Fan/Light Combinations
+These devices have both light and fan functions:
+- Office Ceiling Fan: `fan.office_ceiling_fan` + `light.office_ceiling_fan_light`
+- Primary Room Fan: `fan.primary_room_fan_2` + `light.primary_room_fan`
+- Generic Ceiling Fan: `fan.ceiling_fan_2` + `light.ceiling_fan_up_light` + `light.ceiling_fan_down_light`
+
+## RECOMMENDATIONS
+
+### Immediate Actions Needed:
+
+1. **Rename Generic Entities**
+   - `light.light` → `light.[room]_[location]`
+   - `switch.device` → Remove or rename properly
+   - `switch.desk_light` → Convert to `light.desk`
+
+2. **Fix Duplicate Fan/Light Entities**
+   - Consolidate `primary_room_fan` entities
+   - Ensure each physical device has only one entity per function
+
+3. **Standardize Room Naming**
+   - Choose either `light.[room]` or `light.[room]_main_lights` pattern
+   - Apply consistently across all rooms
+
+4. **Fix Technical Device Names**
+   - Rename Lumi/ZHA devices with friendly names
+   - Update Leviton device names to be descriptive
+
+5. **Clean Up Ghost Entities**
+   - Remove or fix `switch.devicew`
+   - Fix typo in `switch.dining_rom_power`
+
+### Long-term Improvements:
+
+1. **Implement Naming Convention**
+   - Format: `[domain].[location]_[device]_[function]`
+   - Example: `light.living_room_ceiling_fan_light`
+
+2. **Use Entity Customization**
+   - Add friendly names through UI or customize.yaml
+   - Keep technical IDs but show user-friendly names
+
+3. **Regular Entity Audits**
+   - Check for new generic names after adding integrations
+   - Remove unavailable entities periodically
+   - Ensure new devices follow naming convention

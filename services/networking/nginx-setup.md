@@ -1,7 +1,15 @@
-# Nginx Proxy Manager Setup for AdGuard Home
+# ⚠️ Nginx Proxy Manager - REMOVED
 
-## Overview
-Your Nginx Proxy Manager is running at: http://192.168.3.11:81
+**Status: Service Removed on 2025-10-02**
+
+Nginx Proxy Manager has been permanently removed due to QNAP filesystem ACL/permission issues that prevented nginx config file generation. See [System Status October 2025](../../SYSTEM_STATUS_OCTOBER_2025.md) for details.
+
+---
+
+## Historical Documentation (For Reference)
+
+### Previous Setup
+Nginx Proxy Manager was previously running at: http://192.168.3.11:81
 
 ## Setup Instructions
 

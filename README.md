@@ -8,14 +8,14 @@
 
 ## Service Status
 - [Home Assistant](./services/homeassistant/README.md) - Home automation platform
-- [Streaming Stack](./services/streaming/README.md) - xTeve, TVheadend, Plex
-- [Network Services](./services/networking/README.md) - Nginx, AdGuard
+- [Media Services](./services/homeassistant/PLEX_SETUP.md) - Plex Media Server
+- [Network Services](./services/networking/README.md) - AdGuard
 - [Automation](./services/automation/README.md) - n8n workflows
 
 ## Recent Updates
 Check [DOCUMENTATION_MAP.md](./DOCUMENTATION_MAP.md) for a complete list of all documentation.
 
-Last reorganization: 2025-08-27
+Last reorganization: 2025-10-13
 
 ## Documentation Management
 For complete details on how this documentation is managed, synced, and maintained, see:
@@ -24,15 +24,18 @@ For complete details on how this documentation is managed, synced, and maintaine
 ## Documentation Structure
 ```
 /mnt/docker/documentation/
-├── architecture/         # System-wide documentation
-├── runbooks/            # Operational procedures  
-├── services/            # Service-specific docs
-│   ├── homeassistant/   # Home automation
-│   ├── streaming/       # Media streaming stack
-│   ├── networking/      # Network services
-│   └── automation/      # Workflow automation
-├── guides/              # How-to guides
-└── archive/             # Deprecated docs
+├── status_reports/      # System status reports
+├── scripts/             # Utility scripts
+│   └── conversion/     # Media conversion scripts
+├── architecture/        # System-wide documentation
+├── runbooks/           # Operational procedures
+├── services/           # Service-specific docs
+│   ├── homeassistant/  # Home automation
+│   ├── networking/     # Network services
+│   └── automation/     # Workflow automation
+├── guides/             # How-to guides
+├── troubleshooting/    # Debug guides
+└── archive/            # Deprecated docs & old logs
 ```
 
 ## Quick Start

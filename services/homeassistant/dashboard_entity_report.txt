@@ -1,0 +1,526 @@
+DETAILED DASHBOARD ENTITY REPORT
+================================================================================
+
+
+dashboard_ubiquiti.yaml
+-----------------------
+Total entities: 34
+Missing: 30
+Working: 4
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.g4_doorbell_pro_doorbell [unifi]
+  - binary_sensor.g5_pro_motion [unifi]
+  - binary_sensor.unifi_gateway_wan [unifi]
+  - camera.g4_doorbell_pro_high [unifi]
+  - camera.g5_pro_high [unifi]
+  - select.g4_doorbell_pro_recording_mode [unifi]
+  - select.g5_pro_recording_mode [unifi]
+  - sensor.unifi_ap_bedroom_clients [unifi]
+  - sensor.unifi_ap_living_room_clients [unifi]
+  - sensor.unifi_ap_office_clients [unifi]
+  - sensor.unifi_gateway_guest_clients [unifi]
+  - sensor.unifi_gateway_lan_clients [unifi]
+  - sensor.unifi_gateway_uptime [unifi]
+  - sensor.unifi_gateway_wan_download [unifi]
+  - sensor.unifi_gateway_wan_ip [unifi]
+  - sensor.unifi_gateway_wan_upload [unifi]
+  - sensor.unifi_gateway_wlan_clients [unifi]
+  - sensor.unifi_gateway_www_clients [unifi]
+  - sensor.unifi_gateway_www_speedtest_download [unifi]
+  - sensor.unifi_gateway_www_speedtest_ping [unifi]
+  - sensor.unifi_gateway_www_speedtest_upload [unifi]
+  - sensor.unifi_protect_disk_usage [unifi]
+  - sensor.unifi_protect_recording_capacity [unifi]
+  - sensor.unifi_protect_uptime [unifi]
+  - sensor.unifi_switch_24_poe_ports_active [unifi]
+  - sensor.unifi_switch_24_poe_power [unifi]
+  - sensor.unifi_switch_24_poe_temperature [unifi]
+  - sensor.unifi_switch_24_poe_uptime [unifi]
+  - switch.g4_doorbell_pro_privacy_mode [unifi]
+  - switch.g5_pro_privacy_mode [unifi]
+
+
+dashboard_home_networking.yaml
+------------------------------
+Total entities: 30
+Missing: 27
+Working: 3
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.qnap_nas [qnap]
+  - sensor.active_streams [ffmpeg]
+  - sensor.adguard_blocked_queries [adguard]
+  - sensor.adguard_dns_queries [adguard]
+  - sensor.ffmpeg_cpu_usage [ffmpeg]
+  - sensor.ffmpeg_memory_usage [ffmpeg]
+  - sensor.ffmpeg_process_count [ffmpeg]
+  - sensor.plex_watching [plex]
+  - sensor.qnap_cpu_usage [qnap]
+  - sensor.qnap_memory_usage [qnap]
+  - sensor.radarr_upcoming [radarr]
+  - sensor.sabnzbd_status [sabnzbd]
+  - sensor.sonarr_upcoming [sonarr]
+  - sensor.speedtestdotnet_download [speedtest]
+  - sensor.speedtestdotnet_ping [speedtest]
+  - sensor.speedtestdotnet_upload [speedtest]
+  - sensor.transcode_buffer_usage [ffmpeg]
+  - sensor.unifi_gateway_guest_clients [unifi]
+  - sensor.unifi_gateway_lan_clients [unifi]
+  - sensor.unifi_gateway_wlan_clients [unifi]
+  - sensor.unifi_gateway_www_clients [unifi]
+  - switch.adguard_home_filtering [adguard]
+  - switch.adguard_home_protection [adguard]
+  - switch.unifi_network_allow_ssh [unifi]
+  - switch.unifi_network_n8n [unifi]
+  - switch.unifi_network_plex [unifi]
+  - switch.unifi_network_sabnzbd [unifi]
+
+
+dashboard_tesla_energy.yaml
+---------------------------
+Total entities: 17
+Missing: 16
+Working: 1
+Unknown: 0
+
+Missing entities:
+  - automation.powerwall_grid_outage_notification [tesla]
+  - automation.powerwall_low_battery_alert [tesla]
+  - binary_sensor.powerwall_grid_connected [tesla]
+  - sensor.powerwall_battery_level [tesla]
+  - sensor.powerwall_battery_power [tesla]
+  - sensor.powerwall_capacity [tesla]
+  - sensor.powerwall_energy_remaining [tesla]
+  - sensor.powerwall_grid_power [tesla]
+  - sensor.powerwall_load_power [tesla]
+  - sensor.powerwall_operation_mode [tesla]
+  - sensor.solar_energy_today_total [tesla]
+  - sensor.solar_inverter_1_energy_today [tesla]
+  - sensor.solar_inverter_1_power [tesla]
+  - sensor.solar_inverter_2_energy_today [tesla]
+  - sensor.solar_inverter_2_power [tesla]
+  - sensor.solar_power_total [tesla]
+
+
+dashboard_media.yaml
+--------------------
+Total entities: 17
+Missing: 15
+Working: 0
+Unknown: 2
+
+Missing entities:
+  - media_player.plex_ [plex]
+  - sensor.plex [plex]
+  - sensor.plex_recently_added [plex]
+  - sensor.radarr_disk_space [radarr]
+  - sensor.radarr_movies [radarr]
+  - sensor.radarr_queue [radarr]
+  - sensor.radarr_upcoming [radarr]
+  - sensor.sabnzbd_left [sabnzbd]
+  - sensor.sabnzbd_queue [sabnzbd]
+  - sensor.sabnzbd_speed [sabnzbd]
+  - sensor.sabnzbd_status [sabnzbd]
+  - sensor.sonarr_disk_space [sonarr]
+  - sensor.sonarr_queue [sonarr]
+  - sensor.sonarr_series [sonarr]
+  - sensor.sonarr_upcoming [sonarr]
+
+Unknown entities:
+  - media_player.apple_tv
+  - media_player.samsung
+
+
+dashboard_ubiquiti_safe.yaml
+----------------------------
+Total entities: 15
+Missing: 15
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - button.dream_machine_special_edition_unifi_u6_mesh_power_cycle [unifi]
+  - sensor.dream_machine_special_edition_cpu_utilization [unifi]
+  - sensor.dream_machine_special_edition_memory_utilization [unifi]
+  - sensor.dream_machine_special_edition_state [unifi]
+  - sensor.dream_machine_special_edition_unifi_u6_mesh_poe_power [unifi]
+  - sensor.dream_machine_special_edition_uptime [unifi]
+  - switch.dream_machine_special_edition_bedroom_poe [unifi]
+  - switch.dream_machine_special_edition_garage_poe_poe [unifi]
+  - switch.dream_machine_special_edition_liz_s_office_poe [unifi]
+  - switch.dream_machine_special_edition_unifi_u6_mesh_poe [unifi]
+  - switch.unifi_network_ha [unifi]
+  - switch.unifi_network_n8n [unifi]
+  - switch.unifi_network_plex [unifi]
+  - switch.unifi_network_sabnzbd [unifi]
+  - switch.unifi_network_vlc [unifi]
+
+
+dashboard_ffmpeg.yaml
+---------------------
+Total entities: 15
+Missing: 14
+Working: 0
+Unknown: 1
+
+Missing entities:
+  - sensor.active_streams [ffmpeg]
+  - sensor.buffer_read_speed [ffmpeg]
+  - sensor.buffer_write_speed [ffmpeg]
+  - sensor.ffmpeg_cpu_usage [ffmpeg]
+  - sensor.ffmpeg_memory_usage [ffmpeg]
+  - sensor.ffmpeg_process_count [ffmpeg]
+  - sensor.plex_bandwidth [plex]
+  - sensor.plex_direct_play_sessions [plex]
+  - sensor.plex_transcode_sessions [plex]
+  - sensor.plex_watching [plex]
+  - sensor.queued_transcodes [ffmpeg]
+  - sensor.stream_buffer_health [ffmpeg]
+  - sensor.transcode_buffer_usage [ffmpeg]
+  - sensor.transcode_fps [ffmpeg]
+
+Unknown entities:
+  - sensor.server_cpu_usage
+
+
+dashboard_docker_portainer.yaml
+-------------------------------
+Total entities: 9
+Missing: 9
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.docker_server_portainer_online [docker]
+  - binary_sensor.portainer_docker_server_available [docker]
+  - binary_sensor.portainer_local_available [docker]
+  - input_button.open_docker_server_portainer [docker]
+  - sensor.docker_containers_running [docker]
+  - sensor.docker_containers_total [docker]
+  - sensor.docker_images_count [docker]
+  - sensor.local_docker_containers [docker]
+  - sensor.local_docker_images [docker]
+
+
+dashboard_ubiquiti_active.yaml
+------------------------------
+Total entities: 9
+Missing: 9
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.unifi_ [unifi]
+  - binary_sensor.unifi_gateway_wan [unifi]
+  - camera.g4_doorbell_pro [unifi]
+  - camera.g5_pro [unifi]
+  - device_tracker.unifi_ap_ [unifi]
+  - sensor.unifi_gateway_wan_download [unifi]
+  - sensor.unifi_gateway_wan_latency [unifi]
+  - sensor.unifi_gateway_wan_upload [unifi]
+  - switch.unifi_ [unifi]
+
+
+dashboard_unifi_modern.yaml
+---------------------------
+Total entities: 7
+Missing: 7
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.unifi_gateway [unifi]
+  - sensor.unifi_gateway_wlan_clients [unifi]
+  - sensor.unifi_gateway_www_clients [unifi]
+  - sensor.unifi_gateway_www_xput_down [unifi]
+  - sensor.unifi_gateway_www_xput_up [unifi]
+  - sensor.unifi_status [unifi]
+  - sensor.unifi_switch_24_poe_uptime [unifi]
+
+
+dashboard_docker.yaml
+---------------------
+Total entities: 5
+Missing: 5
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.portainer_docker_server_available [docker]
+  - binary_sensor.portainer_local_available [docker]
+  - sensor.docker_containers_running [docker]
+  - sensor.docker_containers_total [docker]
+  - sensor.docker_images_count [docker]
+
+
+dashboard_energy.yaml
+---------------------
+Total entities: 3
+Missing: 3
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - sensor.anker_solix_solar_power [tesla]
+  - sensor.solar_inverter_1_power [tesla]
+  - sensor.solar_inverter_2_power [tesla]
+
+
+dashboard_unifi_diagnostic.yaml
+-------------------------------
+Total entities: 3
+Missing: 3
+Working: 0
+Unknown: 0
+
+Missing entities:
+  - binary_sensor.unifi_gateway [unifi]
+  - sensor.unifi_gateway_wan [unifi]
+  - sensor.unifi_gateway_www_clients [unifi]
+
+
+dashboard_smart_home.yaml
+-------------------------
+Total entities: 4
+Missing: 1
+Working: 2
+Unknown: 1
+
+Missing entities:
+  - climate.carrier_thermostat [carrier]
+
+Unknown entities:
+  - light.all_lights
+
+
+dashboard_docker_portainer_fixed.yaml
+-------------------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_docker_simple.yaml
+----------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_family.yaml
+---------------------
+Total entities: 2
+Missing: 0
+Working: 2
+Unknown: 0
+
+
+dashboard_family_basic.yaml
+---------------------------
+Total entities: 3
+Missing: 0
+Working: 1
+Unknown: 2
+
+Unknown entities:
+  - sensor.date
+  - sensor.time
+
+
+dashboard_family_final.yaml
+---------------------------
+Total entities: 21
+Missing: 0
+Working: 4
+Unknown: 17
+
+Unknown entities:
+  - fan.ceiling1_fan
+  - fan.ceiling_fan_2
+  - fan.dyson_ceiling_fan
+  - fan.office_ceiling_fan
+  - fan.primary_room_fan_2
+  - light.ceiling_fan_down_light
+  - light.ceiling_fan_up_light
+  - light.hallway_main_lights
+  - light.kitchen_main_lights
+  - light.light
+  - light.office_ceiling_fan_light
+  - light.primary_room_fan
+  - switch.bae_fan
+  - switch.desk_light
+  - switch.device
+  - switch.devicew
+  - switch.dining_rom_power
+
+
+dashboard_family_simple.yaml
+----------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_family_test.yaml
+--------------------------
+Total entities: 1
+Missing: 0
+Working: 0
+Unknown: 1
+
+Unknown entities:
+  - light.all_lights
+
+
+dashboard_family_working.yaml
+-----------------------------
+Total entities: 7
+Missing: 0
+Working: 1
+Unknown: 6
+
+Unknown entities:
+  - light.bedroom
+  - light.kitchen
+  - light.living_room
+  - switch.outlet_1
+  - switch.outlet_2
+  - switch.plug_1
+
+
+dashboard_main_overview.yaml
+----------------------------
+Total entities: 21
+Missing: 0
+Working: 4
+Unknown: 17
+
+Unknown entities:
+  - fan.ceiling1_fan
+  - fan.ceiling_fan_2
+  - fan.dyson_ceiling_fan
+  - fan.office_ceiling_fan
+  - fan.primary_room_fan_2
+  - light.ceiling_fan_down_light
+  - light.ceiling_fan_up_light
+  - light.hallway_main_lights
+  - light.kitchen_main_lights
+  - light.light
+  - light.office_ceiling_fan_light
+  - light.primary_room_fan
+  - switch.bae_fan
+  - switch.desk_light
+  - switch.device
+  - switch.devicew
+  - switch.dining_rom_power
+
+
+dashboard_main_overview_backup.yaml
+-----------------------------------
+Total entities: 21
+Missing: 0
+Working: 4
+Unknown: 17
+
+Unknown entities:
+  - fan.ceiling1_fan
+  - fan.ceiling_fan_2
+  - fan.dyson_ceiling_fan
+  - fan.office_ceiling_fan
+  - fan.primary_room_fan_2
+  - light.ceiling_fan_down_light
+  - light.ceiling_fan_up_light
+  - light.hallway_main_lights
+  - light.kitchen_main_lights
+  - light.light
+  - light.office_ceiling_fan_light
+  - light.primary_room_fan
+  - switch.bae_fan
+  - switch.desk_light
+  - switch.device
+  - switch.devicew
+  - switch.dining_rom_power
+
+
+dashboard_main_overview_clean.yaml
+----------------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_overview.yaml
+-----------------------
+Total entities: 8
+Missing: 0
+Working: 4
+Unknown: 4
+
+Unknown entities:
+  - light.hallway_main_lights
+  - light.kitchen_main_lights
+  - light.office_ceiling_fan_light
+  - light.primary_room_fan
+
+
+dashboard_tesla_energy_simple.yaml
+----------------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_ubiquiti_minimal.yaml
+-------------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+dashboard_ubiquiti_simple.yaml
+------------------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+test-dashboard.yaml
+-------------------
+Total entities: 0
+Missing: 0
+Working: 0
+Unknown: 0
+
+
+ui-lovelace-old.yaml
+--------------------
+Total entities: 17
+Missing: 0
+Working: 4
+Unknown: 13
+
+Unknown entities:
+  - fan.ceiling1_fan
+  - fan.ceiling_fan_2
+  - fan.dyson_ceiling_fan
+  - fan.office_ceiling_fan
+  - fan.primary_room_fan_2
+  - light.hallway_main_lights
+  - light.kitchen_main_lights
+  - light.office_ceiling_fan_light
+  - light.primary_room_fan
+  - sensor.date
+  - sensor.time
+  - switch.desk_light
+  - switch.dining_rom_power
+

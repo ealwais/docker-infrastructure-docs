@@ -1,0 +1,17 @@
+# Files to remove (duplicates/old versions)
+/Volumes/docker/homeassistant/dashboard_docker_portainer.yaml
+/Volumes/docker/homeassistant/dashboard_unifi_diagnostic.yaml  
+/Volumes/docker/homeassistant/dashboard_unifi_modern.yaml
+/Volumes/docker/homeassistant/find_unifi_entities.yaml
+/Volumes/docker/homeassistant/check_cameras.yaml
+/Volumes/docker/homeassistant/test-dashboard.yaml
+/Volumes/docker/homeassistant/lovelace_dashboards.yaml
+/Volumes/docker/homeassistant/verify_dashboards.py
+
+# Backup files to remove
+/Volumes/docker/homeassistant/configuration.yaml.backup*
+/Volumes/docker/homeassistant/configuration_*.yaml
+
+# Old directories to clean
+/mnt/docker/homeassistant_clean_start
+/Volumes/docker/homeassistant.old_storage
